@@ -64,7 +64,7 @@ def test_service_status():
     print(f"Service {service_name} running: {status}")
 
 
-def test_stop_and_check_service():
+def test_stop_and_check_service():  #You may be required to run script in administartor mode
     subprocess.run(["sc", "stop", service_name])
     result = subprocess.run(["sc", "query", service_name], capture_output=True, text=True)
     status = "RUNNING" in result.stdout
