@@ -54,13 +54,22 @@ def test_file_2_updated():
     print(f"'updated' value: {updated_value}")
 
 
+service_name = "Themes"
+
+
 def test_service_status():
-    assert os.path.exists(FILE_2_PATH), f"{FILE_2_PATH} does not exist"
-    service_name = "Themes"
     result = subprocess.run(["sc", "query", service_name], capture_output=True, text=True)
     status = "RUNNING" in result.stdout
-    print(f"Service {service_name} running: {status}")
     assert status, f"Service {service_name} is not running."
+    print(f"Service {service_name} running: {status}")
+
+
+def test_stop_and_check_service():
+    subprocess.run(["sc", "stop", service_name])
+    result = subprocess.run(["sc", "query", service_name], capture_output=True, text=True)
+    status = "RUNNING" in result.stdout
+    assert status == False, f"Service {service_name} is still running."
+    print(f"Service {service_name} running: {status}")
 
 
 def test_os_version():
