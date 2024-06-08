@@ -12,6 +12,7 @@ FILE_2_PATH = 'file_2'
 
 def test_file_1_exists():
     assert os.path.exists(FILE_1_PATH), f"{FILE_1_PATH} does not exist"
+    print(f"{FILE_1_PATH} exist")
 
 
 def test_file_1_age():
@@ -34,6 +35,7 @@ def test_file_1_hnmanager():
 
 def test_file_2_exists():
     assert os.path.exists(FILE_2_PATH), f"{FILE_2_PATH} does not exist"
+    print(f"{FILE_2_PATH} exist")
 
 
 def test_file_2_size():
